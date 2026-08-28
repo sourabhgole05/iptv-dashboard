@@ -1,11 +1,11 @@
-// sw.js – caches the core assets for offline use
+sw.js – caches the core assets for offline use
 const CACHE = 'iptv-pwa-v1';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './sw.js',
-  // optional icon – add if you have it
+  // optional icon – include only if you have uploaded it
   './icon-192.png'
 ];
 
