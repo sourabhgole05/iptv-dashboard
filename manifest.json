@@ -1,0 +1,11 @@
+{
+  "name": "IPTV + Markets Dashboard",
+  "short_name": "IPTV Dashboard",
+  "description": "IPTV, Radio, Stocks, Crypto, Commodities, News and E-books",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f7fa",
+  "theme_color": "#1976d2"
+}
