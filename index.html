@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>IPTV + Stocks + Crypto + Radio + News + Commodities + E‑books Dashboard</title>
+<title>IPTV + Stocks + Crypto + Radio + News + Commodities + E-books Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="manifest.json">
 <style>
@@ -32,13 +32,11 @@
   .ticker .down{color:var(--fail);}
   .widgets{display:flex;justify-content:space-around;align-items:center;background:#eee;padding:.5rem;font-size:.9rem;}
   .widgets div{display:flex;align-items:center;gap:.3rem;}
-  #qr{width:150px;height:150px;}
+  #qr{width:180px;height:180px;}
   footer{text-align:center;padding:.8rem;font-size:.8rem;color:#777;background:#eee;}
-  /* search bars */
   .search{margin:1rem 0;display:flex;gap:.5rem;}
   .search input{flex:1;padding:.5rem;border:1px solid #ccc;border-radius:4px;}
   .search button{padding:.5rem 1rem;}
-  /* modal for details */
   .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;}
   .modal-content{background:white;padding:2rem;border-radius:8px;max-width:90%;max-height:80vh;overflow:auto;}
   .modal-content h2{margin-top:0;}
@@ -47,11 +45,11 @@
 </head>
 <body>
 <header>
-  <h1>📺 IPTV + Stocks + Crypto + Radio + News + Commodities + E‑books Dashboard</h1>
-  <p>Tap a thumbnail → VLC launches • Pull‑to‑refresh for quotes</p>
+  <h1>📺 IPTV + Stocks + Crypto + Radio + News + Commodities + E-books Dashboard</h1>
+  <p>Tap a thumbnail → VLC launches • Pull-to-refresh for quotes</p>
 </header>
 <main>
-  <!-- ==================== LIVE TV / RADIO ==================== -->
+  <!-- LIVE TV / RADIO -->
   <section class="section" id="tv-section">
     <h2>Live TV &amp; Radio</h2>
     <div class="search">
@@ -61,9 +59,9 @@
     <div id="tv-grid" class="grid"></div>
   </section>
 
-  <!-- ==================== STOCKS ==================== -->
+  <!-- STOCKS -->
   <section class="section" id="stocks-section">
-    <h2>Market Quotes (India + US)</h2>
+    <h2>Market Quotes (India + US)</h2>
     <div class="search">
       <input type="text" id="stock-search" placeholder="Search ticker…" />
       <button id="stock-lookup">Lookup</button>
@@ -71,7 +69,7 @@
     <div class="ticker" id="stocks-ticker">Loading…</div>
   </section>
 
-  <!-- ==================== CRYPTO ==================== -->
+  <!-- CRYPTO -->
   <section class="section" id="crypto-section">
     <h2>Cryptocurrencies</h2>
     <div class="search">
@@ -81,7 +79,7 @@
     <div class="ticker" id="crypto-ticker">Loading…</div>
   </section>
 
-  <!-- ==================== COMMODITIES ==================== -->
+  <!-- COMMODITIES -->
   <section class="section" id="comm-section">
     <h2>Commodities (Gold, Oil, etc.)</h2>
     <div class="search">
@@ -91,13 +89,13 @@
     <div class="ticker" id="comm-ticker">Loading…</div>
   </section>
 
-  <!-- ==================== NEWS (RSS) ==================== -->
+  <!-- NEWS (RSS) -->
   <section class="section" id="news-section">
     <h2>News Headlines (RSS)</h2>
     <div id="news-list"></div>
   </section>
 
-  <!-- ==================== RADIO (AUDIO) ==================== -->
+  <!-- RADIO (AUDIO) -->
   <section class="section" id="radio-section">
     <h2>Radio (Audio)</h2>
     <div class="search">
@@ -107,9 +105,9 @@
     <div id="radio-grid" class="grid"></div>
   </section>
 
-  <!-- ==================== E‑BOOK READER ==================== -->
+  <!-- E-BOOK READER -->
   <section class="section" id="ebook-section">
-    <h2>E‑book Reader (Project Gutenberg)</h2>
+    <h2>E-book Reader (Project Gutenberg)</h2>
     <div class="search">
       <input type="text" id="ebook-search" placeholder="Search title/author…" />
       <button id="ebook-search-btn">Search</button>
@@ -123,7 +121,7 @@
     <div id="clock"></div>
     <div id="weather"></div>
     <div><img id="qr" alt="QR code to open this PWA"></div>
-  </footer>
+  </div>
   <div class="modal" id="detail-modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -135,10 +133,10 @@
 
 <script>
 // ====================== CONFIG ======================
-const DEFAULT_M3U_URL = 'https://iptv-org.github.io/iptv/index.m3u'; // change if you have your own M3U
+const DEFAULT_M3U_URL = 'https://iptv-org.github.io/iptv/index.m3u'; // change if you have your own list
 const RADIO_M3U_URL   = 'https://iptv-org.github.io/iptv/sources/radio.m3u';
 const BLOOMBERG_M3U   = 'https://iptv-org.github.io/iptv/index.bloomberg.m3u';
-const NEWS_RSS_URL    = 'https://feeds.bbci.co.uk/news/rss.xml'; // example BBC News
+const NEWS_RSS_URL    = 'https://feeds.bbci.co.uk/news/rss.xml';
 const GUTENDEX_API    = 'https://gutendex.com/books/';
 const STOCK_SYMBOLS = {
   // India (NSE suffix .NS)
@@ -165,13 +163,13 @@ const COMMODITY_SYMBOLS = {
   'Corn': 'ZC=F',
   'Wheat': 'ZW=F'
 };
-const REFRESH_MS = 30000; // 30 seconds
+const REFRESH_MS = 30000; // 30 seconds
 // ===================================================
 
 // ---------- Utility ----------
 function $ (sel){return document.querySelector(sel);}
-function $$(sel){return Array.from(document.querySelectorAll(sel));}
-function statusCircle(ok){return `<span class="status ${ok?'ok':'fail'}" title="${ok?'Online':'Offline'}"></span>`;}
+function \[ (sel){return Array.from(document.querySelectorAll(sel));}
+function statusCircle(ok){return `<span class="status \( {ok?'ok':'fail'}" title=" \){ok?'Online':'Offline'}"></span>`;}
 
 // ---------- Generic fetch with timeout ----------
 async function fetchWithTimeout(url, opts = {}, timeout = 8000){
@@ -255,10 +253,10 @@ function renderGrid(container, items, type = 'tv'){
     card.className = 'card';
     const imgSrc = it.logo ? it.logo : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9IiNmZmYiPjwvc3ZnPg==';
     card.innerHTML = `
-      <img src="${imgSrc}" onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9IiNmZmYiPjwvc3ZnPg=='">
+      <img src="${imgSrc}" onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9IiNmZmYiPjwvc3ZnPg=='">
       <div class="info">
         <div class="name">${it.name}</div>
-        <div>${statusCircle(false)}<span class="quality">${it.quality}</span>${it.language ? ` • ${it.language}` : ''}</div>
+        <div>\( {statusCircle(false)}<span class="quality"> \){it.quality}</span>${it.language ? ` • ${it.language}` : ''}</div>
         <button class="play">▶ Play</button>
       </div>`;
     const statusEl = card.querySelector('.status');
@@ -271,7 +269,19 @@ function renderGrid(container, items, type = 'tv'){
       playBtn.title = ok ? 'Click to open in VLC' : 'Stream unreachable';
     });
     playBtn.onclick = () => {
-      if (!playBtn.disabled) launchVLC(it.url);
+      if (playBtn.disabled) return;
+      if (it.quality === 'Audio'){
+        const audio = card.dataset.audioId;
+        if (audio.paused){
+          audio.play().catch(()=>alert('Audio play failed – check VLC or network'));
+          playBtn.textContent = '⏸ Pause';
+        }else{
+          audio.pause();
+          playBtn.textContent = '▶ Play';
+        }
+      }else{
+        launchVLC(it.url);
+      }
     };
     container.appendChild(card);
   });
@@ -343,11 +353,11 @@ function renderStocks(data){
   data.forEach(d=>{
     const span=document.createElement('div');
     span.className=d.up?'up':'down';
-    span.innerHTML=`<strong>${d.name}:</strong> ${d.price.toFixed(2)} <span>${d.pct}</span>`;
+    span.innerHTML=`<strong>${d.name}:</strong> \( {d.price.toFixed(2)} <span> \){d.pct}</span>`;
     ticker.appendChild(span);
   });
 }
-// Stock lookup (opens TradingView chart or Yahoo Finance page)
+// Stock lookup (opens TradingView chart)
 $('#stock-lookup').on('click',()=>{
   const sym=$('#stock-search').val().trim().toUpperCase();
   if(!sym) return;
@@ -359,12 +369,12 @@ $('#stock-lookup').on('click',()=>{
     const prev=meta.previousClose;
     const change=price-prev;
     const pct=(change/prev*100).toFixed(2)+'%';
-    const title=`${sym} – ${price.toFixed(2)} (${pct})`;
+    const title=`${sym} – \( {price.toFixed(2)} ( \){pct})`;
     const body=`
-      <p>Current price: <strong>$${price.toFixed(2)}</strong></p>
-      <p>Change: <span class="${change>=0?'up':'down'}">${change.toFixed(2)} (${pct})</span></p>
-      <p>Previous close: $${prev.toFixed(2)}</p>
-      <iframe width="100%" height="300" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_${sym}&symbol=EXCHANGE%3A${sym}&interval=D&theme=light&style=1&locale=en&toolbar_bg=f1f3f6&enable_publishing=false&hideideas=true" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+      <p>Current price: <strong> \]{price.toFixed(2)}</strong></p>
+      <p>Change: <span class="\( {change>=0?'up':'down'}"> \){change.toFixed(2)} (${pct})</span></p>
+      <p>Previous close: \[ {prev.toFixed(2)}</p>
+      <iframe width="100%" height="300" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_\( {sym}&symbol=EXCHANGE%3A \){sym}&interval=D&theme=light&style=1&locale=en&toolbar_bg=f1f3f6&enable_publishing=false&hideideas=true" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
     `;
     showModal(title,body);
   }).catch(()=>alert('Could not fetch data for that ticker.'));
@@ -401,7 +411,7 @@ function renderCrypto(data){
   data.forEach(d=>{
     const span=document.createElement('div');
     span.className=d.up?'up':'down';
-    span.innerHTML=`<strong>${d.name}:</strong> $${d.price.toFixed(2)} <span>${(d.change||0).toFixed(2)}%</span>`;
+    span.innerHTML=`<strong>\( {d.name}:</strong> \]{d.price.toFixed(2)} <span> \){(d.change||0).toFixed(2)}%</span>`;
     ticker.appendChild(span);
   });
 }
@@ -442,7 +452,7 @@ function renderCommodities(data){
   data.forEach(d=>{
     const span=document.createElement('div');
     span.className=d.up?'up':'down';
-    span.innerHTML=`<strong>${d.name}:</strong> ${d.price.toFixed(2)} <span>${d.pct}</span>`;
+    span.innerHTML=`<strong>${d.name}:</strong> \( {d.price.toFixed(2)} <span> \){d.pct}</span>`;
     ticker.appendChild(span);
   });
 }
@@ -458,7 +468,7 @@ async function loadNews(){
   try{
     const resp=await fetchWithTimeout(NEWS_RSS_URL);
     if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const txt=await resp.text();
+    const txt=await resp.text();               // plain text, NOT JSON
     const parser=new DOMParser();
     const xml=parser.parseFromString(txt,"application/xml");
     const items=[...xml.querySelectorAll('item')].slice(0,10); // first 10
@@ -469,7 +479,7 @@ async function loadNews(){
       const link=it.querySelector('link')?.textContent||'#';
       const div=document.createElement('div');
       div.style.margin='0.5rem 0';
-      div.innerHTML=`<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
+      div.innerHTML=`<a href="\( {link}" target="_blank" rel="noopener"> \){title}</a>`;
       list.appendChild(div);
     });
   }catch(e){
@@ -478,12 +488,12 @@ async function loadNews(){
   }
 }
 
-// ---------- E‑book search (Project Gutenberg) ----------
+// ---------- E-book search (Project Gutenberg) ----------
 async function searchEbooks(){
   const query=$('#ebook-search').val().trim();
   if(!query) return;
   try{
-    const url=`${GUTENDEX_API}?search=${encodeURIComponent(query)}`;
+    const url=`\( {GUTENDEX_API}?search= \){encodeURIComponent(query)}`;
     const resp=await fetchWithTimeout(url);
     if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data=await resp.json();
@@ -496,12 +506,13 @@ async function searchEbooks(){
     }
     results.slice(0,5).forEach(book=>{
       const div=document.createElement('div');
-      div.style.border='1px solid #ddd'; div.style.padding='0.5rem'; div.style.margin='0.5rem 0';
+      div.style.border='1px solid #ddd';
+      div.style.padding='0.5rem';
+      div.style.margin='0.5rem 0';
       const title=book.title||'Untitled';
       const authors=book.authors?.map(a=>a.name).join(', ')||'Unknown';
       const formats=book.formats ? Object.keys(book.formats).join(', ') : 'N/A';
       div.innerHTML=`<strong>${title}</strong><br>by ${authors}<br>Formats: ${formats}`;
-      // If a plain text URL exists, offer to open it in a new tab (read‑only)
       const txtLink=book.formats?.['text/plain; charset=utf-8'];
       if(txtLink){
         const btn=document.createElement('button');
@@ -513,7 +524,7 @@ async function searchEbooks(){
     });
   }catch(e){
     console.error('ebook error',e);
-    $('#ebook-result').text('Error searching e‑books.');
+    $('#ebook-result').text('Error searching e-books.');
   }
 }
 $('#ebook-search-btn').on('click',()=>searchEbooks());
@@ -533,12 +544,12 @@ async function updateWeather(){
   }
 }
 updateWeather();
-setInterval(updateWeather,10*60*1000); // 10 min
+setInterval(updateWeather,10*60*1000); // 10 min
 
 // ---------- QR code ----------
 function updateQR(){
   const url=location.href;
-  $('#qr').src=`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=150`;
+  \( ('#qr').src=`https://api.qrserver.com/v1/create-qr-code/?data= \){encodeURIComponent(url)}&size=180`;
 }
 updateQR();
 window.addEventListener('popstate',updateQR);
@@ -564,7 +575,7 @@ loadStocks();
 loadCrypto();
 loadCommodities();
 loadNews();
-// No need to load e‑books until user searches
+// No need to load e-books until user searches
 
 // ---------- Periodic refresh ----------
 setInterval(()=>{
