@@ -1,11 +1,11 @@
-sw.js – caches the core assets for offline use
+// sw.js – caches the core assets for offline use
 const CACHE = 'iptv-pwa-v1';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './sw.js',
-  // optional icon – include only if you have uploaded it
+  // include only if you have uploaded the icon
   './icon-192.png'
 ];
 
@@ -22,7 +22,7 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Only handle GET requests for same‑origin resources
+  // Only handle GET requests for same-origin resources
   if (e.request.method !== 'GET' || !e.request.url.startsWith(location.origin)) return;
 
   e.respondWith(
@@ -35,4 +35,4 @@ self.addEventListener('fetch', e => {
         });
       }))
   );
-});
+};
